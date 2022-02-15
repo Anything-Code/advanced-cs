@@ -1,0 +1,125 @@
+﻿<Window x:Class="BicycleRepairManagement.W_RepairDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BicycleRepairManagement"
+        mc:Ignorable="d"
+        Title="Repair details" Height="520" Width="400"
+        WindowStartupLocation="CenterOwner"
+        Closing="Window_Closing" Icon="/Images/app_icon.png">
+    <Window.Resources>
+        <local:Int2BicycleType x:Key="int2bikeType" />
+    </Window.Resources>
+    <Grid ShowGridLines="{x:Static local:App.IsDebugBool}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel Background="#eee">
+            <TextBlock FontWeight="SemiBold" Margin="10,0" FontSize="18" VerticalAlignment="Center" Text="Repair details" />
+            <Button ToolTip="Not implemented!" HorizontalAlignment="Right" Margin="20,0" Width="120" Height="25" IsEnabled="False" Content="Generate invoice">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </DockPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10,10,0,10" DataContext="{Binding}">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <StackPanel Margin="0,5" Orientation="Horizontal">
+                    <TextBlock Text="Bicycle category" Style="{StaticResource Label}" />
+
+                    <ComboBox SelectedItem="{Binding BicycleCategory, Converter={StaticResource int2bikeType}}" Width="150" Name="CbxBikeCategory" />
+                </StackPanel>
+                <StackPanel Margin="0,5" Orientation="Horizontal">
+                    <TextBlock Text="Bicycle is E-Bike" Style="{StaticResource Label}" />
+                    <CheckBox Width="150" IsChecked="{Binding IsEBike}"/>
+                </StackPanel>
+                <StackPanel Margin="0,5" Orientation="Vertical">
+                    <ItemsControl ItemsSource="{Binding Areas}" Name="IcAreas">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                                        <TextBlock Text="Issue" Style="{StaticResource Label}" />
+                                        <TextBox Width="150" Text="{Binding Name}" />
+                                        <Button Name="BtnRemoveArea" Click="BtnRemoveArea_Click" Background="White" Margin="5,0" HorizontalAlignment="Right" Width="50" FontWeight="SemiBold" Content="Remove">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="6"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                                        <TextBlock Text="Issue Description" Style="{StaticResource Label}" />
+                                        <TextBox Height="40" TextWrapping="Wrap" Width="150" Text="{Binding Description}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button ToolTip="Click to add more issues." Name="BtnAddArea" Click="BtnAddArea_Click" Background="White" Margin="100,5,0,5" HorizontalAlignment="Left" Width="150" FontWeight="Black" Content="+">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="6"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="0,5" Orientation="Horizontal">
+                    <TextBlock Text="Target date" Style="{StaticResource Label}" />
+                    <DatePicker Width="150" SelectedDate="{Binding TargetDate, StringFormat=yyyy/MM/dd}" />
+                </StackPanel>
+                <StackPanel Margin="0,5" Orientation="Horizontal">
+                    <TextBlock Text="Hours used" Style="{StaticResource Label}" />
+                    <TextBox Width="50" Text="{Binding UsedHours}" />
+                </StackPanel>
+                <StackPanel Margin="0,5" Orientation="Vertical">
+                    <ItemsControl ItemsSource="{Binding Materials}" Name="IcMaterials">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                                        <TextBlock Text="Material Name" Style="{StaticResource Label}" />
+                                        <TextBox Width="150" Text="{Binding Name}" />
+                                        <Button Name="BtnRemoveMaterial" Click="BtnRemoveMaterial_Click" CommandParameter="{Binding}" Background="White" Margin="5,0" HorizontalAlignment="Right" Width="50" FontWeight="SemiBold" Content="Remove">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="6"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                    <StackPanel Margin="0,5" Orientation="Horizontal">
+                                        <TextBlock Text="Material Price" Style="{StaticResource Label}" />
+                                        <TextBox Width="150" Text="{Binding Price}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button ToolTip="Click to add more materials." Name="BtnAddMaterial" Click="BtnAddMaterial_Click" Background="White" Margin="100,5,0,5" HorizontalAlignment="Left" Width="150" FontWeight="Black" Content="+">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="6"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="add_icon.png" />
+    <None Remove="Images\add_icon.png" />
+    <None Remove="Images\app_icon.png" />
+    <None Remove="Images\app_icon_gray.png" />
+    <None Remove="Images\delete_icon.png" />
+    <None Remove="Images\placeholder.png" />
+    <None Remove="Images\popout_icon.png" />
+    <None Remove="Images\popout_icon.svg" />
+    <None Remove="Images\settings_icon.png" />
+    <None Remove="Images\user_icon.png" />
+    <None Remove="Images\wrench_hand.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Faker.Net" Version="2.0.154" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add_icon.png" />
+    <Resource Include="Images\app_icon.png" />
+    <Resource Include="Images\app_icon_gray.png" />
+    <Resource Include="Images\delete_icon.png" />
+    <Resource Include="Images\placeholder.png" />
+    <Resource Include="Images\popout_icon.png" />
+    <Resource Include="Images\popout_icon.svg" />
+    <Resource Include="Images\settings_icon.png" />
+    <Resource Include="Images\user_icon.png" />
+    <Resource Include="Images\wrench_hand.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="W_Settings.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="W_RepairDetails.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+</Project>
