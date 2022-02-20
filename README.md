@@ -10,7 +10,7 @@ Scope is given as Visual Studio for Desktop development.
 
 ## Application
 
-The application is to be used by an employee of a small bicycle-repair-company in canada. It supports archiving of customers with their repair-requests with the invoice information. Also the application provides an overfiew of upcoming appointments with customers.
+The application is to be used by an employee of a small bicycle-repair-company in canada. It supports archiving of customers with their repair-requests with the invoice information. Also the application provides an overview on upcoming appointments with customers.
 
 ### Roadmap
 
